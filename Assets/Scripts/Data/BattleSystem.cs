@@ -10,27 +10,27 @@ public class BattleSystem : MonoBehaviour
     /// </summary>
     /// <param name="adventurer">冒険者のステータス</param>
     /// <param name="monster">モンスターのステータス</param>
-    public void StartBattle(CharacterStats adventurer, CharacterStats monster)
+    public void StartBattle(AdventurerData adventurer, MonsterData monster)
     {
         Debug.Log("戦闘開始！");
-        Debug.Log($"冒険者 HP: {adventurer.currentHP}/{adventurer.maxHP}");
-        Debug.Log($"モンスター HP: {monster.currentHP}/{monster.maxHP}");
+        Debug.Log($"冒険者 HP: {adventurer.stats.currentHP}/{adventurer.stats.maxHP}");
+        Debug.Log($"モンスター HP: {monster.stats.currentHP}/{monster.stats.maxHP}");
 
         // 戦闘ループ
-        while (adventurer.currentHP > 0 && monster.currentHP > 0)
+        while (adventurer.stats.currentHP > 0 && monster.stats.currentHP > 0)
         {
             // 冒険者の攻撃
-            PerformAttack(adventurer, monster);
+            PerformAttack(adventurer.stats, monster.stats);
 
             // モンスターが生存していれば反撃
-            if (monster.currentHP > 0)
+            if (monster.stats.currentHP > 0)
             {
-                PerformAttack(monster, adventurer);
+                PerformAttack(monster.stats, adventurer.stats);
             }
         }
 
         // 戦闘結果
-        if (adventurer.currentHP > 0)
+        if (adventurer.stats.currentHP > 0)
         {
             Debug.Log("冒険者の勝利！");
         }

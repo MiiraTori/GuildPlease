@@ -80,6 +80,7 @@
     <Compile Include="Assets/Scripts/Data/BossSpawnerSystem.cs" />
     <Compile Include="Assets/Scripts/Data/ItemType.cs" />
     <Compile Include="Assets/Scripts/Data/BossSpawnData.cs" />
+    <Compile Include="Assets/Scripts/Data/BattleTestRunner.cs" />
     <Compile Include="Assets/Scripts/Data/SpawnedMonsterComponent.cs" />
     <Compile Include="Assets/Scripts/Data/FieldAreaDataSO.cs" />
     <Compile Include="Assets/Scripts/Data/ItemData.cs" />
