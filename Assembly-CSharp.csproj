@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets/Scripts/Data/MonsterPopulationSystem.cs" />
     <Compile Include="Assets/Scripts/Data/MonsterData.cs" />
+    <Compile Include="Assets/Scripts/Data/MonsterSpawnerSystem.cs" />
     <Compile Include="Assets/Scripts/Data/ItemDataSO.cs" />
     <Compile Include="Assets/Scripts/Data/BattleSystem.cs" />
     <Compile Include="Assets/Scripts/Data/FieldAreaState.cs" />
