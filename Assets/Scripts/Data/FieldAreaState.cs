@@ -8,26 +8,27 @@ public class FieldAreaState
     public Dictionary<string, int> monsterCounts = new();
     public string currentBossId;
 
-    public void Initialize(FieldAreaDataSO data)
+    public void Initialize(FieldAreaDataSO data, int initialCount = 0)
     {
         areaId = data.areaId;
         monsterCounts.Clear();
-        foreach (var monster in data.possibleMonsters)
+        foreach (var monster in data.possibleBosses)
         {
-            if (!monsterCounts.ContainsKey(monster.monster.monsterId))
+            if (!monsterCounts.ContainsKey(monster.boss.monsterId))
             {
-                monsterCounts.Add(monster.monster.monsterId, 0);
+                monsterCounts.Add(monster.boss.monsterId, initialCount);
             }
         }
+
         currentBossId = null;
     }
 
-    public void IncreaseMonsters(FieldAreaDataSO data)
+    public void IncreaseMonsters(FieldAreaDataSO data, int maxCountPerMonster = 5)
     {
-        foreach (var monster in data.possibleMonsters)
+        foreach (var monster in data.possibleBosses)
         {
-            string id = monster.monster.monsterId;
-            if (monsterCounts.ContainsKey(id))
+            string id = monster.boss.monsterId;
+            if (monsterCounts.ContainsKey(id) && monsterCounts[id] < maxCountPerMonster)
             {
                 monsterCounts[id]++;
             }
@@ -41,7 +42,6 @@ public class FieldAreaState
             monsterCounts[monsterId]--;
         }
 
-        // ボスだった場合、ボス出現を解除
         if (currentBossId == monsterId)
         {
             Debug.Log($"🗡️ ボス {monsterId} を討伐 → currentBossId を null にします");
@@ -49,7 +49,6 @@ public class FieldAreaState
         }
     }
 
-    // 🔍 ログ出力用：エリア状態を文字列に変換
     public string GetStatusString()
     {
         string monsterInfo = "";

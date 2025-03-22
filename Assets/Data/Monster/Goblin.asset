@@ -9,22 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 70ff988fe7d1e4e7a8221bf429180253, type: 3}
   m_Name: Goblin
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterDataSO
-  monsterId: 1
-  displayName: "\u30B4\u30D6\u30EA\u30F3"
-  level: 1
+  m_EditorClassIdentifier: 
+  monsterId: 
+  displayName: 
+  level: 0
   stats:
-    maxHP: 10
-    currentHP: 10
-    attack: 5
-    defense: 1
-    speed: 10
+    maxHP: 0
+    currentHP: 0
+    attack: 0
+    defense: 0
+    speed: 0
     maxMP: 0
     currentMP: 0
     intelligence: 0
     willpower: 0
-  dropItems:
-  - {fileID: 0}
+  dropItems: []
   traits: []

@@ -11,9 +11,8 @@ public class MonsterPopulationSystem : MonoBehaviour
     {
         foreach (var area in allFieldAreas)
         {
-            var state = new FieldAreaState { areaId = area.areaId };
-            state.Initialize(area, initialCount: 1); // ← ここで初期化を明示的に
-
+            var state = new FieldAreaState();
+            state.Initialize(area, initialCount: 1);
             areaStates.Add(area.areaId, state);
         }
 
@@ -37,7 +36,7 @@ public class MonsterPopulationSystem : MonoBehaviour
         {
             if (areaStates.TryGetValue(area.areaId, out var state))
             {
-                state.IncreaseMonsters(area, maxCountPerMonster: 5); // ← 上限を指定
+                state.IncreaseMonsters(area, maxCountPerMonster: 5);
             }
         }
     }
@@ -53,12 +52,8 @@ public class MonsterPopulationSystem : MonoBehaviour
         state?.OnMonsterDefeated(monsterId);
     }
 
-    /// <summary>すべてのエリア状態をログに出力（デバッグ用）</summary>
-    public void LogAllAreaStates()
+    public IEnumerable<FieldAreaState> GetAllAreaStates()
     {
-        foreach (var kv in areaStates)
-        {
-            kv.Value.LogStatus();
-        }
+        return areaStates.Values;
     }
 }
