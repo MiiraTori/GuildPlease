@@ -42,7 +42,7 @@ public enum AreaType
 [System.Serializable]
 public class MonsterSpawnData
 {
-    public MonsterDataSO monster;
+    public MonsterDataSO monsterData;
     [Range(0f, 1f)]
     public float spawnRate;
 }

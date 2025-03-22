@@ -14,9 +14,9 @@ public class FieldAreaState
         monsterCounts.Clear();
         foreach (var monster in data.possibleBosses)
         {
-            if (!monsterCounts.ContainsKey(monster.boss.monsterId))
+            if (!monsterCounts.ContainsKey(monster.monsterData.monsterId))
             {
-                monsterCounts.Add(monster.boss.monsterId, initialCount);
+                monsterCounts.Add(monster.monsterData.monsterId, initialCount);
             }
         }
 
@@ -27,7 +27,7 @@ public class FieldAreaState
     {
         foreach (var monster in data.possibleBosses)
         {
-            string id = monster.boss.monsterId;
+            string id = monster.monsterData.monsterId;
             if (monsterCounts.ContainsKey(id) && monsterCounts[id] < maxCountPerMonster)
             {
                 monsterCounts[id]++;

@@ -42,8 +42,8 @@ public class BossSpawnerSystem : MonoBehaviour
             {
                 if (Random.value < bossData.spawnChance)
                 {
-                    state.currentBossId = bossData.boss.monsterId;
-                    Debug.Log($"【Boss出現】{areaData.areaName} に {bossData.boss.displayName} が出現！");
+                    state.currentBossId = bossData.monsterData.monsterId;
+                    Debug.Log($"【Boss出現】{areaData.areaName} に {bossData.monsterData.displayName} が出現！");
                     break;
                 }
             }

@@ -13,11 +13,11 @@ public class TimeManager : MonoBehaviour
 
     public delegate void TimeChangedDelegate(GameTime newTime);
     public event TimeChangedDelegate OnTimeChanged;
+
+    // 追加：毎時の変化を通知するデリゲートとイベント
     public delegate void HourChangedDelegate(int newHour);
     public event HourChangedDelegate OnHourChanged;
-
     private int lastHour = -1; // 前回の時間を記録
-
 
     private void Awake()
     {
@@ -36,14 +36,16 @@ public class TimeManager : MonoBehaviour
         float scaledDeltaTime = Time.deltaTime * timeMultiplier;
         timeAccumulator += scaledDeltaTime;
 
+        // 60秒ごとにゲーム内1分進める
         while (timeAccumulator >= 60f)
         {
             timeAccumulator -= 60f;
             currentTime.AddMinutes(1);
 
+            // イベント通知（時間が変わったとき）
             OnTimeChanged?.Invoke(currentTime);
 
-            // 時間が変わったらイベント通知
+            // 追加：時間が変わったらイベント通知
             if (currentTime.hour != lastHour)
             {
                 lastHour = currentTime.hour;
@@ -56,8 +58,6 @@ public class TimeManager : MonoBehaviour
     {
         return currentTime;
     }
-
-
 
     public void SetGameTime(GameTime newTime)
     {
