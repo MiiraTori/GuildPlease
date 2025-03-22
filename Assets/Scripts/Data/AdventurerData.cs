@@ -9,6 +9,6 @@ public class AdventurerData
     public string displayName;
     public string job;
     public int level;
-    public AdventurerStats stats;
+    public CharacterStats stats;
     public List<ItemData> inventory;
 }

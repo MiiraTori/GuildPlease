@@ -10,7 +10,7 @@ public class AdventurerDataSO : ScriptableObject
     public string displayName;
     public string job;
     public int level;
-    public AdventurerStats stats;
+    public CharacterStats stats;
     public List<ItemDataSO> inventory;
 
     public AdventurerData CreateAdventurerInstance()
@@ -21,7 +21,7 @@ public class AdventurerDataSO : ScriptableObject
             displayName = this.displayName,
             job = this.job,
             level = this.level,
-            stats = new AdventurerStats
+            stats = new CharacterStats
             {
                 maxHP = this.stats.maxHP,
                 currentHP = this.stats.maxHP,

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class AdventurerStats
+public class CharacterStats
 {
     public int maxHP;
     public int currentHP;

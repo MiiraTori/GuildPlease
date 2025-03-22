@@ -8,7 +8,7 @@ public class MonsterDataSO : ScriptableObject
     public string monsterId;
     public string displayName;
     public int level;
-    public AdventurerStats stats;
+    public CharacterStats stats;
     public List<ItemDataSO> dropItems; // ← ScriptableObject側はSOのままでOK
     public List<string> traits; //特性
 
@@ -22,7 +22,7 @@ public class MonsterDataSO : ScriptableObject
             monsterId = this.monsterId,
             displayName = this.displayName,
             level = this.level,
-            stats = new AdventurerStats
+            stats = new CharacterStats
             {
                 maxHP = this.stats.maxHP,
                 currentHP = this.stats.maxHP,
