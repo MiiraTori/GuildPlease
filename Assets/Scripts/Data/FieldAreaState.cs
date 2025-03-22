@@ -5,44 +5,35 @@ using UnityEngine;
 public class FieldAreaState
 {
     public string areaId;
+    public Dictionary<string, int> monsterCounts = new();
+    public string currentBossId;
 
-    /// <summary>通常モンスターの現在数（monsterId → count）</summary>
-    public Dictionary<string, int> monsterCounts = new Dictionary<string, int>();
-
-    /// <summary>現在出現中のボスID（いなければ null）</summary>
-    public string currentBossId = null;
-
-    /// <summary>エリアごとの初期化（外部から一括登録）</summary>
-    public void Initialize(FieldAreaDataSO areaData, int initialCount = 1)
+    public void Initialize(FieldAreaDataSO data)
     {
+        areaId = data.areaId;
         monsterCounts.Clear();
-
-        foreach (var spawn in areaData.encounterMonsters)
+        foreach (var monster in data.possibleMonsters)
         {
-            string id = spawn.monster.monsterId;
-            monsterCounts[id] = Mathf.Max(0, initialCount);
+            if (!monsterCounts.ContainsKey(monster.monster.monsterId))
+            {
+                monsterCounts.Add(monster.monster.monsterId, 0);
+            }
         }
-
         currentBossId = null;
     }
 
-    /// <summary>最大数までモンスターを増加させる（ボスがいないときのみ）</summary>
-    public void IncreaseMonsters(FieldAreaDataSO areaData, int maxCountPerMonster = 5)
+    public void IncreaseMonsters(FieldAreaDataSO data)
     {
-        if (!string.IsNullOrEmpty(currentBossId)) return;
-
-        foreach (var spawn in areaData.encounterMonsters)
+        foreach (var monster in data.possibleMonsters)
         {
-            string id = spawn.monster.monsterId;
-            if (!monsterCounts.ContainsKey(id))
-                monsterCounts[id] = 0;
-
-            if (monsterCounts[id] < maxCountPerMonster)
+            string id = monster.monster.monsterId;
+            if (monsterCounts.ContainsKey(id))
+            {
                 monsterCounts[id]++;
+            }
         }
     }
 
-    /// <summary>モンスターが討伐されたときに呼ばれる</summary>
     public void OnMonsterDefeated(string monsterId)
     {
         if (monsterCounts.ContainsKey(monsterId) && monsterCounts[monsterId] > 0)
@@ -50,19 +41,24 @@ public class FieldAreaState
             monsterCounts[monsterId]--;
         }
 
+        // ボスだった場合、ボス出現を解除
         if (currentBossId == monsterId)
         {
+            Debug.Log($"🗡️ ボス {monsterId} を討伐 → currentBossId を null にします");
             currentBossId = null;
         }
     }
 
-    /// <summary>現在のモンスター数をデバッグ出力</summary>
-    public void LogStatus()
+    // 🔍 ログ出力用：エリア状態を文字列に変換
+    public string GetStatusString()
     {
-        Debug.Log($"[Area: {areaId}] Boss: {currentBossId ?? "None"}");
-        foreach (var kv in monsterCounts)
+        string monsterInfo = "";
+        foreach (var pair in monsterCounts)
         {
-            Debug.Log($" - {kv.Key}: {kv.Value}体");
+            monsterInfo += $"{pair.Key}:{pair.Value} ";
         }
+
+        string bossInfo = string.IsNullOrEmpty(currentBossId) ? "なし" : currentBossId;
+        return $"[エリア:{areaId}] モンスター:{monsterInfo} / ボス:{bossInfo}";
     }
 }

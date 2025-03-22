@@ -47,8 +47,6 @@ public class TimeManager : MonoBehaviour
         return currentTime;
     }
 
-
-
     public void SetGameTime(GameTime newTime)
     {
         currentTime = newTime;
