@@ -93,7 +93,6 @@ public class AdventurerAIComponent : MonoBehaviour
         {
             Debug.Log($"【戦闘終了】{state.data.displayName} → 討伐完了");
 
-            // ✅ クエスト判定処理
             CheckQuestCompletion();
 
             state.isBusy = false;
@@ -109,7 +108,6 @@ public class AdventurerAIComponent : MonoBehaviour
 
         string target = state.currentQuest.targetId;
 
-        // 仮の成功条件（将来は戦闘結果と連携）
         if (!string.IsNullOrEmpty(target) && Random.value > 0.5f)
         {
             state.currentQuest.status = QuestStatus.Completed;
@@ -121,7 +119,7 @@ public class AdventurerAIComponent : MonoBehaviour
         }
     }
 
-    // ✅ 帰還処理
+    // ✅ 帰還＆報酬受け取り処理
     private void ReturnToGuild()
     {
         state.isBusy = true;
@@ -130,6 +128,21 @@ public class AdventurerAIComponent : MonoBehaviour
         timer.StartTask(3f, () =>
         {
             state.currentAreaId = "guild";
+
+            // ✅ クエスト報酬処理
+            if (state.currentQuest != null && state.currentQuest.status == QuestStatus.Completed)
+            {
+                var inventory = GetComponent<InventoryComponent>();
+                if (inventory != null)
+                {
+                    foreach (var reward in state.currentQuest.rewardItems)
+                    {
+                        inventory.AddItem(reward);
+                        Debug.Log($"【報酬獲得】{state.data.displayName} は {reward.itemName} を受け取った！");
+                    }
+                }
+            }
+
             state.ResetState();
             StartNextAction();
         });

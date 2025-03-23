@@ -9,9 +9,23 @@ public class TaskTimerComponent : MonoBehaviour
 
     public Action OnTaskCompleted;      // タスク完了時のイベント
 
+    private void Start()
+    {
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.OnTimeChanged += OnTimeAdvanced;
+        }
+    }
     private void OnEnable()
     {
-        TimeManager.Instance.OnTimeChanged += OnTimeAdvanced;
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.OnTimeChanged += OnTimeAdvanced;
+        }
+        else
+        {
+            Debug.LogWarning("[TaskTimerComponent] TimeManager.Instance が null です。まだ初期化されていない可能性があります");
+        }
     }
 
     private void OnDisable()
