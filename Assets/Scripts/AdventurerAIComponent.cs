@@ -20,6 +20,18 @@ public class AdventurerAIComponent : MonoBehaviour
         StartNextAction();
     }
 
+    public void AssignQuest(QuestData quest)
+    {
+        if (state.isBusy) return;
+
+        state.currentQuest = quest;
+        state.currentAction = AdventurerActionType.Move;
+        state.isBusy = true;
+
+        Debug.Log($"🧾 クエスト受注：{quest.title}");
+        StartNextAction();
+    }
+
     private void StartNextAction()
     {
         if (state.isBusy) return;
