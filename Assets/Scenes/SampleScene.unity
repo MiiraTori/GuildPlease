@@ -224,10 +224,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 884925061}
+  - component: {fileID: 884925062}
   - component: {fileID: 884925060}
   - component: {fileID: 884925059}
   - component: {fileID: 884925058}
-  - component: {fileID: 884925062}
+  - component: {fileID: 884925063}
   m_Layer: 0
   m_Name: 'GameManager '
   m_TagString: Untagged
@@ -303,14 +304,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274d4f07681a04cf8a58eeb5925c3dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeMultiplier: 240
+  timeMultiplier: 30
   currentTime:
     year: 1
     month: 1
     day: 1
     hour: 5
     minute: 0
---- !u!1 &1625553688
+--- !u!114 &884925063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884925057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e32f13698af8480aad09f0d82226a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durationMinutes: 5
+  remainingMinutes: 0
+  isRunning: 0
+--- !u!1 &1062190366
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,82 +334,96 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1625553690}
-  - component: {fileID: 1625553689}
+  - component: {fileID: 1062190370}
+  - component: {fileID: 1062190371}
+  - component: {fileID: 1062190369}
+  - component: {fileID: 1062190368}
+  - component: {fileID: 1062190367}
   m_Layer: 0
-  m_Name: 'MonsterSpawnerSystem '
+  m_Name: AdventurerTester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1625553689
+--- !u!114 &1062190367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625553688}
+  m_GameObject: {fileID: 1062190366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6bacfde8d6f4594ad1c05e76091d99, type: 3}
+  m_Script: {fileID: 11500000, guid: d846ae6ae72fa4d70b6fe4b060b9792d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldAreas:
-  - {fileID: 11400000, guid: db49c79721702427eaa038cbaa1eace0, type: 2}
---- !u!4 &1625553690
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625553688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1934150365
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1934150367}
-  - component: {fileID: 1934150366}
-  - component: {fileID: 1934150369}
-  - component: {fileID: 1934150368}
-  m_Layer: 0
-  m_Name: 'BattleTester '
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1934150366
+  state:
+    data:
+      adventurerId: 1
+      displayName: 
+      job: 
+      level: 0
+      stats:
+        maxHP: 0
+        currentHP: 0
+        attack: 0
+        defense: 0
+        speed: 0
+        maxMP: 0
+        currentMP: 0
+        intelligence: 0
+        willpower: 0
+      experience: 0
+    currentQuest:
+      questId: 1
+      title: "\u30B4\u30D6\u30EA\u30F3\u8A0E\u4F10"
+      type: 0
+      targetId: 1
+      targetAreaId: 1
+      status: 0
+      deadlineHours: 1
+    currentAreaId: 1
+    currentAction: 0
+    isBusy: 0
+    currentHP: 0
+--- !u!114 &1062190368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934150365}
+  m_GameObject: {fileID: 1062190366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb84f17b98fdf4176ad9088e8e6c6243, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e32f13698af8480aad09f0d82226a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1934150367
+  durationMinutes: 5
+  remainingMinutes: 0
+  isRunning: 0
+--- !u!114 &1062190369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062190366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0037f84f364b4a2b84c571d5748f599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiComponent: {fileID: 1062190367}
+  adventurerDataSO: {fileID: 11400000, guid: 38777f242a67d47168f621ae00a802fe, type: 2}
+  questDataSO: {fileID: 11400000, guid: 3bbc03102241a42fc90b79451de13229, type: 2}
+--- !u!4 &1062190370
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934150365}
+  m_GameObject: {fileID: 1062190366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -402,30 +432,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1934150368
+--- !u!114 &1062190371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934150365}
+  m_GameObject: {fileID: 1062190366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb84f17b98fdf4176ad9088e8e6c6243, type: 3}
+  m_Script: {fileID: 11500000, guid: 274d4f07681a04cf8a58eeb5925c3dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1934150369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934150365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34c7605e3a87b4da3879b5e2998befbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  adventurerSO: {fileID: 11400000, guid: 38777f242a67d47168f621ae00a802fe, type: 2}
-  monsterSO: {fileID: 11400000, guid: 8c2e7f96c220f4e6bb2a812379a6ff1d, type: 2}
-  battleSystem: {fileID: 1934150368}
+  timeMultiplier: 60
+  currentTime:
+    year: 1
+    month: 1
+    day: 1
+    hour: 0
+    minute: 0

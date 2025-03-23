@@ -1,4 +1,5 @@
 using UnityEngine;
+using GameData;
 
 [RequireComponent(typeof(TaskTimerComponent))]
 public class AdventurerAIComponent : MonoBehaviour
@@ -82,6 +83,7 @@ public class AdventurerAIComponent : MonoBehaviour
         });
     }
 
+    // ✅ 戦闘処理とクエスト判定
     private void EngageInCombat()
     {
         state.isBusy = true;
@@ -90,11 +92,36 @@ public class AdventurerAIComponent : MonoBehaviour
         timer.StartTask(4f, () =>
         {
             Debug.Log($"【戦闘終了】{state.data.displayName} → 討伐完了");
+
+            // ✅ クエスト判定処理
+            CheckQuestCompletion();
+
             state.isBusy = false;
             StartNextAction();
         });
     }
 
+    // ✅ クエスト達成判定処理
+    private void CheckQuestCompletion()
+    {
+        if (state.currentQuest == null)
+            return;
+
+        string target = state.currentQuest.targetId;
+
+        // 仮の成功条件（将来は戦闘結果と連携）
+        if (!string.IsNullOrEmpty(target) && Random.value > 0.5f)
+        {
+            state.currentQuest.status = QuestStatus.Completed;
+            Debug.Log($"【クエスト達成】{state.data.displayName} が {target} を討伐しました！");
+        }
+        else
+        {
+            Debug.Log($"【クエスト未達成】{state.data.displayName} は対象に遭遇しませんでした。");
+        }
+    }
+
+    // ✅ 帰還処理
     private void ReturnToGuild()
     {
         state.isBusy = true;

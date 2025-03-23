@@ -61,6 +61,7 @@
     <Compile Include="Assets/Scripts/Utilities/FieldAreaLogger.cs" />
     <Compile Include="Assets/Scripts/Misc/ItemType.cs" />
     <Compile Include="Assets/Scripts/Data/MonsterData.cs" />
+    <Compile Include="Assets/Scripts/AdventurerTestRunner.cs" />
     <Compile Include="Assets/Scripts/Data/ItemDataSO.cs" />
     <Compile Include="Assets/Scripts/Misc/QuestStatus.cs" />
     <Compile Include="Assets/Scripts/AdventurerState.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets/Scripts/Components/TaskTimerComponent.cs" />
     <Compile Include="Assets/Scripts/Data/QuestData.cs" />
     <Compile Include="Assets/Scripts/Data/AdventurerDataSO.cs" />
+    <Compile Include="Assets/Scripts/Data/QuestDataSO.cs" />
     <Compile Include="Assets/Scripts/Misc/TimeTestRunner.cs" />
     <Compile Include="Assets/Scripts/Components/CharacterStats.cs" />
     <Compile Include="Assets/Scripts/Components/SpawnedMonsterComponent.cs" />
