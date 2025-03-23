@@ -22,7 +22,7 @@ public class TaskTimerComponent : MonoBehaviour
         }
     }
 
-    public void StartTask(float minutes)
+    public void StartTask(float minutes, Action value)
     {
         durationMinutes = minutes;
         remainingMinutes = minutes;

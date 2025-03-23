@@ -11,6 +11,8 @@ public class MonsterDataSO : ScriptableObject
     public CharacterStats stats;
     public List<ItemDataSO> dropItems; // ← ScriptableObject側はSOのままでOK
     public List<string> traits; //特性
+    public int experienceReward;
+
 
     /// <summary>
     /// ScriptableObjectからMonsterDataのインスタンスを生成
@@ -35,7 +37,8 @@ public class MonsterDataSO : ScriptableObject
                 willpower = this.stats.willpower
             },
             traits = new List<string>(this.traits),
-            dropItems = this.dropItems.ConvertAll(itemSO => itemSO.CreateItemInstance())
-        };
+            dropItems = this.dropItems.ConvertAll(itemSO => itemSO.CreateItemInstance()),
+           experienceReward= this.experienceReward
+};
     }
 }

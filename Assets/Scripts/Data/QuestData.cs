@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections.Generic;
 using GameData;
@@ -9,13 +10,11 @@ public class QuestDataSO : ScriptableObject
     public string title;
     public QuestType type;
     public string targetId;
+    public string targetAreaId; 
     public List<ItemDataSO> rewardItems;
     public QuestStatus status;
     public float deadlineHours;
 
-    /// <summary>
-    /// ScriptableObject から QuestData のインスタンスを生成
-    /// </summary>
     public QuestData CreateQuestInstance()
     {
         return new QuestData
@@ -24,6 +23,7 @@ public class QuestDataSO : ScriptableObject
             title = this.title,
             type = this.type,
             targetId = this.targetId,
+            targetAreaId = this.targetAreaId, 
             status = this.status,
             deadlineHours = this.deadlineHours,
             rewardItems = this.rewardItems.ConvertAll(itemSO => itemSO.CreateItemInstance())
@@ -36,8 +36,11 @@ public class QuestData
     public string questId;
     public string title;
     public QuestType type;
-    public string targetId;
+
+    public string targetId;        // モンスターIDやアイテムID
+    public string targetAreaId;    // 目的地となるエリアID 
     public List<ItemData> rewardItems;
+
     public QuestStatus status;
     public float deadlineHours;
 }

@@ -19,7 +19,11 @@ MonoBehaviour:
   dangerLevel: 0
   travelTimeMinutes: 0
   connectedAreas: []
-  encounterRate: 0
-  encounterMonsters: []
+  encounterRate: 0.402
+  encounterMonsters:
+  - monsterData: {fileID: 11400000, guid: 8c2e7f96c220f4e6bb2a812379a6ff1d, type: 2}
+    spawnRate: 1
   gatherableItems: []
-  possibleBosses: []
+  possibleBosses:
+  - monsterData: {fileID: 11400000, guid: 8c2e7f96c220f4e6bb2a812379a6ff1d, type: 2}
+    spawnChance: 1

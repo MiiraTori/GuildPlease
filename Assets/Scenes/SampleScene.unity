@@ -247,7 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9597291b0df04d01ad8cd2b8442fb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allFieldAreas: []
+  allFieldAreas:
+  - {fileID: 11400000, guid: db49c79721702427eaa038cbaa1eace0, type: 2}
 --- !u!114 &884925059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e64fa9c059a4ca3a03782c88ad4c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  populationSystem: {fileID: 0}
+  populationSystem: {fileID: 884925058}
   allAreas:
   - {fileID: 11400000, guid: db49c79721702427eaa038cbaa1eace0, type: 2}
 --- !u!114 &884925060
@@ -302,13 +303,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274d4f07681a04cf8a58eeb5925c3dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeMultiplier: 60
+  timeMultiplier: 240
   currentTime:
     year: 1
     month: 1
     day: 1
-    hour: 0
+    hour: 5
     minute: 0
+--- !u!1 &1625553688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1625553690}
+  - component: {fileID: 1625553689}
+  m_Layer: 0
+  m_Name: 'MonsterSpawnerSystem '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1625553689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625553688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6bacfde8d6f4594ad1c05e76091d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldAreas:
+  - {fileID: 11400000, guid: db49c79721702427eaa038cbaa1eace0, type: 2}
+--- !u!4 &1625553690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625553688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1934150365
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +366,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1934150367}
   - component: {fileID: 1934150366}
+  - component: {fileID: 1934150369}
+  - component: {fileID: 1934150368}
   m_Layer: 0
   m_Name: 'BattleTester '
   m_TagString: Untagged
@@ -338,8 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb84f17b98fdf4176ad9088e8e6c6243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMonster: {fileID: 0}
-  currentAreaId: 
 --- !u!4 &1934150367
 Transform:
   m_ObjectHideFlags: 0
@@ -355,3 +402,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1934150368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934150365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb84f17b98fdf4176ad9088e8e6c6243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1934150369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934150365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c7605e3a87b4da3879b5e2998befbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adventurerSO: {fileID: 11400000, guid: 38777f242a67d47168f621ae00a802fe, type: 2}
+  monsterSO: {fileID: 11400000, guid: 8c2e7f96c220f4e6bb2a812379a6ff1d, type: 2}
+  battleSystem: {fileID: 1934150368}

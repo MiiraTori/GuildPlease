@@ -11,4 +11,10 @@ public class AdventurerData
     public int level;
     public CharacterStats stats;
     public List<ItemData> inventory;
+
+    public int experience;
+    public void GainExperience(int amount)
+    {
+        experience += amount;
+    }
 }
