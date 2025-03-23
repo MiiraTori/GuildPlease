@@ -1,63 +1,48 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class FieldAreaState
 {
     public string areaId;
-    public Dictionary<string, int> monsterCounts = new();
+
+    public int currentMonsterCount;
+    public int maxMonsterCount;
+
     public string currentBossId;
 
-    public void Initialize(FieldAreaDataSO data, int initialCount = 0)
-    {
-        areaId = data.areaId;
-        monsterCounts.Clear();
-        foreach (var monster in data.possibleBosses)
-        {
-            if (!monsterCounts.ContainsKey(monster.monsterData.monsterId))
-            {
-                monsterCounts.Add(monster.monsterData.monsterId, initialCount);
-            }
-        }
+    public List<string> droppedItemIds = new();
 
+    public void Initialize(int maxCount)
+    {
+        maxMonsterCount = maxCount;
+        currentMonsterCount = maxCount;
         currentBossId = null;
+        droppedItemIds.Clear();
     }
 
-    public void IncreaseMonsters(FieldAreaDataSO data, int maxCountPerMonster = 5)
+    public void IncreaseMonsterCount(int amount = 1)
     {
-        foreach (var monster in data.possibleBosses)
-        {
-            string id = monster.monsterData.monsterId;
-            if (monsterCounts.ContainsKey(id) && monsterCounts[id] < maxCountPerMonster)
-            {
-                monsterCounts[id]++;
-            }
-        }
+        currentMonsterCount = Mathf.Min(currentMonsterCount + amount, maxMonsterCount);
     }
 
-    public void OnMonsterDefeated(string monsterId)
+    public void DecreaseMonsterCount(int amount = 1)
     {
-        if (monsterCounts.ContainsKey(monsterId) && monsterCounts[monsterId] > 0)
-        {
-            monsterCounts[monsterId]--;
-        }
+        currentMonsterCount = Mathf.Max(currentMonsterCount - amount, 0);
+    }
 
-        if (currentBossId == monsterId)
-        {
-            Debug.Log($"🗡️ ボス {monsterId} を討伐 → currentBossId を null にします");
-            currentBossId = null;
-        }
+    public void AddDrop(string itemId)
+    {
+        droppedItemIds.Add(itemId);
+    }
+
+    public void ClearBoss()
+    {
+        currentBossId = null;
     }
 
     public string GetStatusString()
     {
-        string monsterInfo = "";
-        foreach (var pair in monsterCounts)
-        {
-            monsterInfo += $"{pair.Key}:{pair.Value} ";
-        }
-
-        string bossInfo = string.IsNullOrEmpty(currentBossId) ? "なし" : currentBossId;
-        return $"[エリア:{areaId}] モンスター:{monsterInfo} / ボス:{bossInfo}";
+        return $"エリア: {areaId}, モンスター: {currentMonsterCount}/{maxMonsterCount}, ボス: {(string.IsNullOrEmpty(currentBossId) ? "なし" : currentBossId)}, ドロップ: {droppedItemIds.Count}個";
     }
 }

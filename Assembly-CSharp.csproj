@@ -64,6 +64,7 @@
     <Compile Include="Assets/Scripts/Data/ItemDataSO.cs" />
     <Compile Include="Assets/Scripts/Misc/AdventurerState.cs" />
     <Compile Include="Assets/Scripts/Misc/QuestStatus.cs" />
+    <Compile Include="Assets/FieldAreaManager.cs" />
     <Compile Include="Assets/Scripts/Misc/AdventurerTestRunner.cs" />
     <Compile Include="Assets/Scripts/Misc/QuestCardU.cs" />
     <Compile Include="Assets/Scripts/Misc/BattleTestRunner.cs" />
