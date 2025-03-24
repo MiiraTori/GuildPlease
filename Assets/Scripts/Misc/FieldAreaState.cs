@@ -13,12 +13,13 @@ public class FieldAreaState
 
     public List<string> droppedItemIds = new();
 
-    public void Initialize(int maxCount)
+    public void Initialize(string areaId, int maxMonsterCount)
     {
-        maxMonsterCount = maxCount;
-        currentMonsterCount = maxCount;
-        currentBossId = null;
-        droppedItemIds.Clear();
+        this.areaId = areaId;
+        this.maxMonsterCount = maxMonsterCount;
+        this.currentMonsterCount = maxMonsterCount;
+        this.currentBossId = null;
+        this.droppedItemIds.Clear();
     }
 
     public void IncreaseMonsterCount(int amount = 1)
@@ -44,5 +45,20 @@ public class FieldAreaState
     public string GetStatusString()
     {
         return $"エリア: {areaId}, モンスター: {currentMonsterCount}/{maxMonsterCount}, ボス: {(string.IsNullOrEmpty(currentBossId) ? "なし" : currentBossId)}, ドロップ: {droppedItemIds.Count}個";
+    }
+
+    public void OnMonsterDefeated(string monsterId)
+    {
+        DecreaseMonsterCount();
+
+        if (currentBossId == monsterId)
+        {
+            ClearBoss();
+            Debug.Log($"🧨 ボス {monsterId} を討伐！エリア {areaId} のボスは消えました。");
+        }
+        else
+        {
+            Debug.Log($"🗡️ モンスターを討伐（エリア: {areaId}）");
+        }
     }
 }

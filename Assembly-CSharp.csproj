@@ -83,6 +83,7 @@
     <Compile Include="Assets/Scripts/Data/QuestDataSO.cs" />
     <Compile Include="Assets/Scripts/Misc/AdventurerActionType.cs" />
     <Compile Include="Assets/Scripts/Misc/TimeTestRunner.cs" />
+    <Compile Include="Assets/MonsterSpawnData.cs" />
     <Compile Include="Assets/Scripts/Components/CharacterStats.cs" />
     <Compile Include="Assets/Scripts/Misc/AdventurerDropHandler.cs" />
     <Compile Include="Assets/Scripts/Components/SpawnedMonsterComponent.cs" />

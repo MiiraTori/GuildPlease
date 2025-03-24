@@ -9,7 +9,8 @@ public class FieldAreaManager : MonoBehaviour
     {
         foreach (var area in allAreas)
         {
-            area.Initialize();
+            area.Initialize(area.areaId, area.maxMonsterCount);
+      ;
         }
     }
 

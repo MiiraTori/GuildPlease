@@ -1,80 +1,56 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
-/// <summary>
-/// 各フィールドエリアにおけるモンスター・ボスの出現を管理するシステム
-/// </summary>
 public class MonsterSpawnerSystem : MonoBehaviour
 {
-    [Header("管理するすべてのエリア")]
-    [SerializeField] private List<FieldAreaDataSO> fieldAreas;
-
-    private bool bossSpawnedToday = false;
+    public List<FieldAreaDataSO> areaDataList;
+    private Dictionary<string, FieldAreaState> areaStates = new();
 
     private void Start()
     {
-        if (TimeManager.Instance != null)
+        InitializeAreas();
+        SpawnInitialMonsters();
+    }
+
+    private void InitializeAreas()
+    {
+        foreach (var area in areaDataList)
         {
-            TimeManager.Instance.OnHourChanged += HandleHourChange;
+            var state = new FieldAreaState();
+            state.Initialize(area.areaId, area.maxMonsterCount);
+            areaStates[area.areaId] = state;
         }
     }
 
-    private void OnDestroy()
+    private void SpawnInitialMonsters()
     {
-        if (TimeManager.Instance != null)
+        foreach (var area in areaDataList)
         {
-            TimeManager.Instance.OnHourChanged -= HandleHourChange;
+            var state = areaStates[area.areaId];
+            state.IncreaseMonsterCount(1); // 初期スポーン数
         }
     }
 
-    /// <summary>
-    /// 時間が進んだときの処理（毎時）
-    /// </summary>
-    private void HandleHourChange(int hour)
+    public void OnMonsterDefeated(string areaId, string monsterId)
     {
-        if (hour == 6 && !bossSpawnedToday)
+        if (!areaStates.TryGetValue(areaId, out var state)) return;
+
+        state.DecreaseMonsterCount();
+
+        if (state.currentBossId == monsterId)
         {
-            foreach (var area in fieldAreas)
-            {
-                TrySpawnBoss(area);
-            }
-            bossSpawnedToday = true;
+            state.ClearBoss();
+            Debug.Log($"💀 ボス {monsterId} が討伐されました");
         }
-        else if (hour == 0)
+        else
         {
-            bossSpawnedToday = false; // 日付変更でリセット
+            Debug.Log($"🗡️ モンスターが1体討伐されました");
         }
     }
 
-    /// <summary>
-    /// ボス出現判定
-    /// </summary>
-    public void TrySpawnBoss(FieldAreaDataSO area)
+    public FieldAreaState GetAreaState(string areaId)
     {
-        foreach (var boss in area.possibleBosses)
-        {
-            if (Random.value < boss.spawnChance)
-            {
-                Debug.Log($"<color=red>【ボス出現】{boss.monsterData.displayName} が {area.areaName} に出現！</color>");
-                SpawnedMonsterComponent.RegisterBoss(area, boss.monsterData);
-                return;
-            }
-        }
-    }
-
-    /// <summary>
-    /// 通常モンスター出現判定（探索中・移動時など）
-    /// </summary>
-    public void TrySpawnMonster(FieldAreaDataSO area)
-    {
-        foreach (var monster in area.encounterMonsters)
-        {
-            if (Random.value < monster.spawnRate)
-            {
-                Debug.Log($"<color=green>【モンスター出現】{monster.monsterData.displayName} が {area.areaName} に出現！</color>");
-                SpawnedMonsterComponent.RegisterMonster(area, monster.monsterData);
-                return;
-            }
-        }
+        areaStates.TryGetValue(areaId, out var state);
+        return state;
     }
 }
