@@ -3,45 +3,55 @@ using UnityEngine;
 
 public class TaskTimerComponent : MonoBehaviour
 {
-    private float remainingTime;
+    public float duration;
+    private float currentTime;
     private bool isRunning = false;
-    private Action onTimerComplete;
+    public Action onTimerComplete;
+
+    /// <summary>
+    /// タイマーを開始する。オプションでコールバックをセットできる。
+    /// </summary>
+    public void StartTimer(float time, Action callback = null)
+    {
+        duration = time;
+        currentTime = duration;
+        isRunning = true;
+
+        if (callback != null)
+        {
+            onTimerComplete = callback;
+        }
+
+        Debug.Log($"⏳ タイマー開始：{duration}秒");
+    }
 
     private void Update()
     {
         if (!isRunning) return;
 
-        remainingTime -= Time.deltaTime;
-        if (remainingTime <= 0f)
+        currentTime -= Time.deltaTime;
+
+        if (currentTime <= 0f)
         {
             isRunning = false;
-            onTimerComplete?.Invoke();
-            onTimerComplete = null;
+            Debug.Log("⏰ タイマー完了 → コールバック実行");
+
+            try
+            {
+                if (onTimerComplete != null)
+                {
+                    onTimerComplete.Invoke();
+                    Debug.Log("✅ コールバック実行成功");
+                }
+                else
+                {
+                    Debug.LogWarning("⚠️ コールバックが設定されていません");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"❌ コールバック中に例外が発生: {ex.Message}\n{ex.StackTrace}");
+            }
         }
     }
-
-    public void StartTimer(float duration, Action onComplete)
-    {
-        if (duration <= 0f)
-        {
-            Debug.LogWarning("⏱️ 無効なタイマー時間");
-            onComplete?.Invoke();
-            return;
-        }
-
-        remainingTime = duration;
-        onTimerComplete = onComplete;
-        isRunning = true;
-
-        Debug.Log($"⏱️ タイマー開始（{duration}秒）");
-    }
-
-    public void StopTimer()
-    {
-        isRunning = false;
-        onTimerComplete = null;
-        Debug.Log("⏹️ タイマー中断");
-    }
-
-    public bool IsRunning => isRunning;
 }

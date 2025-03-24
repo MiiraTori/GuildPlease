@@ -10,6 +10,7 @@ public class AdventurerAIComponent : MonoBehaviour
     private void Awake()
     {
         timer = GetComponent<TaskTimerComponent>();
+        Debug.Log($"[AI] TaskTimerComponent: {(timer != null ? "取得成功" : "取得失敗")}");
     }
 
     public void AssignQuest(QuestData quest)
@@ -37,7 +38,7 @@ public class AdventurerAIComponent : MonoBehaviour
 
         if (state.isBusy)
         {
-            Debug.LogWarning("⚠️ 冒険者はすでに行動中です！");
+            Debug.LogWarning("⚠️ すでに行動中のため開始できません");
             return;
         }
 
@@ -59,7 +60,7 @@ public class AdventurerAIComponent : MonoBehaviour
                 break;
 
             case AdventurerActionType.EngageCombat:
-                Debug.Log($"🏠 ギルドに帰還中…");
+                Debug.Log($"🏠 帰還中...");
                 state.currentAction = AdventurerActionType.ReturnToGuild;
                 timer.StartTimer(2f, ProceedQuestStep);
                 break;
