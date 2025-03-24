@@ -15,8 +15,9 @@ MonoBehaviour:
   questId: 1
   title: "\u30B4\u30D6\u30EA\u30F3\u8A0E\u4F10"
   type: 0
-  targetId: 1
-  targetAreaId: 1
-  rewardItems: []
+  targetId: goblin001
+  targetAreaId: forest01
+  rewardItems:
+  - {fileID: 11400000, guid: 11f017b29bb9643a7b4e17c37079b0bc, type: 2}
   status: 0
-  deadlineHours: 0
+  deadlineHours: 20

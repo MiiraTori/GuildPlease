@@ -27,3 +27,6 @@ MonoBehaviour:
     intelligence: 0
     willpower: 0
   inventory: []
+  experience: 100
+  guildPoints: 0
+  currentStamina: 100

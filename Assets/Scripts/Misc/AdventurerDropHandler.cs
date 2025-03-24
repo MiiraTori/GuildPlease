@@ -27,5 +27,6 @@ public class AdventurerDropHandler : MonoBehaviour, IDropHandler
         // クエストを冒険者に割り当て
         aiComponent.AssignQuest(quest);
         Debug.Log($"🧭 冒険者にクエスト「{quest.title}」を渡しました！");
+
     }
 }

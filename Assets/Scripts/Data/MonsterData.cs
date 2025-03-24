@@ -11,5 +11,8 @@ public class MonsterData
     public List<ItemData> dropItems; // ← 修正！
     public List<string> traits;
     public int experienceReward;
+
+    public float spawnRate;
 }
+
 

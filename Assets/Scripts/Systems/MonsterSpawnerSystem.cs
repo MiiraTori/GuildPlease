@@ -53,4 +53,15 @@ public class MonsterSpawnerSystem : MonoBehaviour
         areaStates.TryGetValue(areaId, out var state);
         return state;
     }
+
+    public MonsterData GetRandomMonsterInArea(string areaId)
+    {
+        if (areaStates.TryGetValue(areaId, out var state))
+        {
+            return state.GetRandomMonster();
+        }
+        Debug.LogWarning($"🛑 モンスターが見つかりません: areaId = {areaId}");
+        return null;
+    }
+  
 }

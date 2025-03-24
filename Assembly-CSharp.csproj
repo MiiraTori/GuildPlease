@@ -58,19 +58,19 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.2.1f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Scripts/AdventurerSpawner.cs" />
+    <Compile Include="Assets/Scripts/Misc/AdventurerSpawner.cs" />
     <Compile Include="Assets/Scripts/Utilities/FieldAreaLogger.cs" />
     <Compile Include="Assets/Scripts/Misc/ItemType.cs" />
     <Compile Include="Assets/Scripts/Data/MonsterData.cs" />
     <Compile Include="Assets/Scripts/Data/ItemDataSO.cs" />
     <Compile Include="Assets/Scripts/Misc/AdventurerState.cs" />
     <Compile Include="Assets/Scripts/Misc/QuestStatus.cs" />
-    <Compile Include="Assets/FieldAreaManager.cs" />
-    <Compile Include="Assets/Scripts/Misc/AdventurerTestRunner.cs" />
+    <Compile Include="Assets/Animations/AdventurerListComponent.cs" />
     <Compile Include="Assets/Scripts/Misc/QuestCardU.cs" />
     <Compile Include="Assets/Scripts/Misc/BattleTestRunner.cs" />
     <Compile Include="Assets/Scripts/Systems/MonsterPopulationSystem.cs" />
     <Compile Include="Assets/FolderGenerator.cs" />
+    <Compile Include="Assets/Scripts/Components/ItemListComponent.cs" />
     <Compile Include="Assets/Scripts/Systems/MonsterSpawnerSystem.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
     <Compile Include="Assets/Scripts/Data/AdventurerData.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="Assets/Scripts/Data/QuestDataSO.cs" />
     <Compile Include="Assets/Scripts/Misc/AdventurerActionType.cs" />
     <Compile Include="Assets/Scripts/Misc/TimeTestRunner.cs" />
+    <Compile Include="Assets/Scripts/Components/MonsterListComponent.cs" />
     <Compile Include="Assets/MonsterSpawnData.cs" />
     <Compile Include="Assets/Scripts/Components/CharacterStats.cs" />
     <Compile Include="Assets/Scripts/Misc/AdventurerDropHandler.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets/Scripts/Components/AdventurerAIComponent.cs" />
     <Compile Include="Assets/Scripts/Data/FieldAreaDataSO.cs" />
     <Compile Include="Assets/Scripts/Systems/BossSpawnerSystem.cs" />
+    <Compile Include="Assets/FieldAreaListComponent.cs" />
     <Compile Include="Assets/Scripts/Data/ItemData.cs" />
     <Compile Include="Assets/InventoryComponent.cs" />
   </ItemGroup>

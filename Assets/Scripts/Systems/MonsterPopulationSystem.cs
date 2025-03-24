@@ -28,6 +28,7 @@ public class MonsterPopulationSystem : MonoBehaviour
         {
             TimeManager.Instance.OnTimeChanged -= OnTimeAdvanced;
         }
+        
     }
 
     private void OnTimeAdvanced(GameTime time)

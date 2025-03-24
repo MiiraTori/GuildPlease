@@ -6,6 +6,8 @@ public class TaskTimerComponent : MonoBehaviour
     public float duration;
     private float currentTime;
     private bool isRunning = false;
+    // 🔸 外部から現在の状態を参照するためのプロパティ
+    public bool IsRunning => isRunning;
     public Action onTimerComplete;
 
     /// <summary>

@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+
 [System.Serializable]
 public class AdventurerState
 {
@@ -9,7 +11,7 @@ public class AdventurerState
 
     public bool isBusy = false;              // 🔸 行動中フラグ
     public int currentHP;
-
+  
     public AdventurerState(AdventurerData data)
     {
         this.data = data;
@@ -22,5 +24,10 @@ public class AdventurerState
         isBusy = false;
         currentAreaId = "guild";
         currentQuest = null;
+    }
+    public bool IsQuestComplete()
+    {
+        if (currentQuest == null) return false;
+        return currentQuest.defeatedCount >= currentQuest.targetCount;
     }
 }

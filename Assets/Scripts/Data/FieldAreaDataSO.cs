@@ -17,6 +17,16 @@ public class FieldAreaDataSO : ScriptableObject
 
     [Header("アイテムドロップ設定")]
     public List<ItemData> possibleItemDrops;
+
+
+    // 将来的な拡張用（例えばBOSS）
+    [System.Serializable]
+    public class MonsterSpawnData
+    {
+        public MonsterDataSO monsterData;  // 出現するモンスターのデータ
+        [Range(0f, 1f)]
+        public float spawnRate = 1f;       // 出現確率（合計で1未満でもOK）
+    }
 }
 
 public enum AreaType

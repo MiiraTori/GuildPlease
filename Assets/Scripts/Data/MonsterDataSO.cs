@@ -13,6 +13,7 @@ public class MonsterDataSO : ScriptableObject
     public List<string> traits; //特性
     public int experienceReward;
 
+    public float spawnRate;
 
     /// <summary>
     /// ScriptableObjectからMonsterDataのインスタンスを生成
@@ -38,7 +39,9 @@ public class MonsterDataSO : ScriptableObject
             },
             traits = new List<string>(this.traits),
             dropItems = this.dropItems.ConvertAll(itemSO => itemSO.CreateItemInstance()),
-           experienceReward= this.experienceReward
+           experienceReward= this.experienceReward,
+            spawnRate =this.spawnRate
+
 };
     }
 }

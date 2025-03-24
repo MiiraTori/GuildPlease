@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ff988fe7d1e4e7a8221bf429180253, type: 3}
   m_Name: goblin001
   m_EditorClassIdentifier: 
-  monsterId: 1
+  monsterId: goblin001
   displayName: "\u30B4\u30D6\u30EA\u30F3"
   level: 1
   stats:
@@ -28,3 +28,4 @@ MonoBehaviour:
   dropItems:
   - {fileID: 11400000, guid: 11f017b29bb9643a7b4e17c37079b0bc, type: 2}
   traits: []
+  experienceReward: 0

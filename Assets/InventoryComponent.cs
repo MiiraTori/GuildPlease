@@ -3,35 +3,37 @@ using UnityEngine;
 
 public class InventoryComponent : MonoBehaviour
 {
-    [SerializeField]
-    public List<ItemData> items = new List<ItemData>();
+    [SerializeField] public List<ItemData> items = new List<ItemData>();
 
-    /// <summary>
-    /// アイテムをインベントリに追加
-    /// </summary>
     public void AddItem(ItemData item)
     {
+        if (item == null) return;
+
         items.Add(item);
-        Debug.Log($"📦 アイテム追加: {item.itemName}");
+        Debug.Log($"🎒 アイテム追加: {item.itemName}");
     }
 
-    /// <summary>
-    /// 指定されたIDのアイテムを所持しているか確認
-    /// </summary>
     public bool HasItem(string itemId)
     {
-        return items.Exists(item => item.itemId == itemId);
+        return items.Exists(i => i.itemId == itemId);
     }
 
-    /// <summary>
-    /// インベントリの内容をログに表示（デバッグ用）
-    /// </summary>
+    public void RemoveItem(string itemId)
+    {
+        var found = items.Find(i => i.itemId == itemId);
+        if (found != null)
+        {
+            items.Remove(found);
+            Debug.Log($"🗑️ アイテム削除: {found.itemName}");
+        }
+    }
+
     public void LogInventory()
     {
-        Debug.Log("📦 [インベントリ一覧]");
+        Debug.Log("📦 現在のインベントリ:");
         foreach (var item in items)
         {
-            Debug.Log($"- {item.itemName} ({item.itemId})");
+            Debug.Log($"- {item.itemName} (ID: {item.itemId})");
         }
     }
 }
