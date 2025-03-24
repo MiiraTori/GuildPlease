@@ -1,69 +1,47 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class TaskTimerComponent : MonoBehaviour
 {
-    public float durationMinutes = 5f;  // タスクにかかる時間（ゲーム内分）
-    public float remainingMinutes;      // 残り時間
-    public bool isRunning = false;
+    private float remainingTime;
+    private bool isRunning = false;
+    private Action onTimerComplete;
 
-    public Action OnTaskCompleted;      // タスク完了時のイベント
-
-    private void Start()
-    {
-        if (TimeManager.Instance != null)
-        {
-            TimeManager.Instance.OnTimeChanged += OnTimeAdvanced;
-        }
-    }
-    private void OnEnable()
-    {
-        if (TimeManager.Instance != null)
-        {
-            TimeManager.Instance.OnTimeChanged += OnTimeAdvanced;
-        }
-        else
-        {
-            Debug.LogWarning("[TaskTimerComponent] TimeManager.Instance が null です。まだ初期化されていない可能性があります");
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (TimeManager.Instance != null)
-        {
-            TimeManager.Instance.OnTimeChanged -= OnTimeAdvanced;
-        }
-    }
-
-    public void StartTask(float minutes, Action value)
-    {
-        durationMinutes = minutes;
-        remainingMinutes = minutes;
-        isRunning = true;
-    }
-
-    private void OnTimeAdvanced(GameTime time)
+    private void Update()
     {
         if (!isRunning) return;
 
-        remainingMinutes -= 1f;
-
-        if (remainingMinutes <= 0f)
+        remainingTime -= Time.deltaTime;
+        if (remainingTime <= 0f)
         {
             isRunning = false;
-            remainingMinutes = 0f;
-            OnTaskCompleted?.Invoke();
+            onTimerComplete?.Invoke();
+            onTimerComplete = null;
         }
     }
 
-    public bool IsTaskRunning()
+    public void StartTimer(float duration, Action onComplete)
     {
-        return isRunning;
+        if (duration <= 0f)
+        {
+            Debug.LogWarning("⏱️ 無効なタイマー時間");
+            onComplete?.Invoke();
+            return;
+        }
+
+        remainingTime = duration;
+        onTimerComplete = onComplete;
+        isRunning = true;
+
+        Debug.Log($"⏱️ タイマー開始（{duration}秒）");
     }
 
-    public float GetProgress01()
+    public void StopTimer()
     {
-        return 1f - (remainingMinutes / durationMinutes);
+        isRunning = false;
+        onTimerComplete = null;
+        Debug.Log("⏹️ タイマー中断");
     }
+
+    public bool IsRunning => isRunning;
 }
