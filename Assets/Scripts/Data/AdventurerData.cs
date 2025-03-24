@@ -13,6 +13,8 @@ public class AdventurerData
     public List<ItemData> inventory;
 
     public int experience;
+    public int guildPoints;
+
     public void GainExperience(int amount)
     {
         experience += amount;

@@ -1,59 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
-using GameData;
 
 public class InventoryComponent : MonoBehaviour
 {
+    [SerializeField]
     public List<ItemData> items = new List<ItemData>();
 
     /// <summary>
-    /// アイテムを追加する
+    /// アイテムをインベントリに追加
     /// </summary>
     public void AddItem(ItemData item)
     {
-        if (item != null)
-        {
-            items.Add(item);
-            Debug.Log($"[Inventory] {item.itemName} を追加しました");
-
-            // 追加後に全アイテムを表示
-            LogInventory();
-        }
+        items.Add(item);
+        Debug.Log($"📦 アイテム追加: {item.itemName}");
     }
 
     /// <summary>
-    /// 現在の所持アイテムをログに出力
+    /// 指定されたIDのアイテムを所持しているか確認
+    /// </summary>
+    public bool HasItem(string itemId)
+    {
+        return items.Exists(item => item.itemId == itemId);
+    }
+
+    /// <summary>
+    /// インベントリの内容をログに表示（デバッグ用）
     /// </summary>
     public void LogInventory()
     {
-        if (items.Count == 0)
-        {
-            Debug.Log("[Inventory] 所持アイテムなし");
-            return;
-        }
-
-        string log = "[Inventory] 所持アイテム一覧：\n";
+        Debug.Log("📦 [インベントリ一覧]");
         foreach (var item in items)
         {
-            log += $"- {item.itemName} (ID: {item.itemId})\n";
+            Debug.Log($"- {item.itemName} ({item.itemId})");
         }
-        Debug.Log(log);
-    }
-
-    /// <summary>
-    /// 全てのアイテムを削除
-    /// </summary>
-    public void ClearInventory()
-    {
-        items.Clear();
-        Debug.Log("[Inventory] アイテムをすべて削除しました");
-    }
-
-    /// <summary>
-    /// 特定のアイテムを所持しているか確認
-    /// </summary>
-    public bool ContainsItem(string itemId)
-    {
-        return items.Exists(i => i.itemId == itemId);
     }
 }
