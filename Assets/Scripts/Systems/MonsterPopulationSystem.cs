@@ -12,7 +12,6 @@ public class MonsterPopulationSystem : MonoBehaviour
         foreach (var area in allFieldAreas)
         {
             var state = new FieldAreaState();
-            state.Initialize(area.areaId, area.maxMonsterCount);
             areaStates.Add(area.areaId, state);
         }
 
@@ -33,13 +32,7 @@ public class MonsterPopulationSystem : MonoBehaviour
 
     private void OnTimeAdvanced(GameTime time)
     {
-        foreach (var area in allFieldAreas)
-        {
-            if (areaStates.TryGetValue(area.areaId, out var state))
-            {
-                state.Initialize(area.areaId, area.maxMonsterCount);
-            }
-        }
+        
     }
 
     public FieldAreaState GetAreaState(string areaId)

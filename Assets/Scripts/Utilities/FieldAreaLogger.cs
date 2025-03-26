@@ -22,7 +22,7 @@ public class FieldAreaLogger : MonoBehaviour
         Debug.Log("===== フィールド状態ログ =====");
         foreach (var areaState in populationSystem.GetAllAreaStates())
         {
-            Debug.Log(areaState.GetStatusString());
+            Debug.Log(areaState.ToString());
         }
     }
 

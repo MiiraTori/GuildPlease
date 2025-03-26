@@ -17,7 +17,6 @@ public class MonsterSpawnerSystem : MonoBehaviour
         foreach (var area in areaDataList)
         {
             var state = new FieldAreaState();
-            state.Initialize(area.areaId, area.maxMonsterCount);
             areaStates[area.areaId] = state;
         }
     }
@@ -27,7 +26,7 @@ public class MonsterSpawnerSystem : MonoBehaviour
         foreach (var area in areaDataList)
         {
             var state = areaStates[area.areaId];
-            state.IncreaseMonsterCount(1); // 初期スポーン数
+          //  state.IncreaseMonsterCount(1); // 初期スポーン数
         }
     }
 
@@ -35,17 +34,7 @@ public class MonsterSpawnerSystem : MonoBehaviour
     {
         if (!areaStates.TryGetValue(areaId, out var state)) return;
 
-        state.DecreaseMonsterCount();
-
-        if (state.currentBossId == monsterId)
-        {
-            state.ClearBoss();
-            Debug.Log($"💀 ボス {monsterId} が討伐されました");
-        }
-        else
-        {
-            Debug.Log($"🗡️ モンスターが1体討伐されました");
-        }
+        
     }
 
     public FieldAreaState GetAreaState(string areaId)

@@ -33,20 +33,6 @@ public class BossSpawnerSystem : MonoBehaviour
 
     private void TrySpawnBosses()
     {
-        foreach (var areaData in allAreas)
-        {
-            var state = populationSystem.GetAreaState(areaData.areaId);
-            if (state == null || !string.IsNullOrEmpty(state.currentBossId)) continue;
-
-            foreach (var bossData in areaData.possibleBosses)
-            {
-                if (Random.value < bossData.spawnChance)
-                {
-                    state.currentBossId = bossData.monsterData.monsterId;
-                    Debug.Log($"【Boss出現】{areaData.areaName} に {bossData.monsterData.displayName} が出現！");
-                    break;
-                }
-            }
-        }
+     
     }
 }
