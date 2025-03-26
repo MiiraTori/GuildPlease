@@ -13,7 +13,7 @@ public class FieldAreaDataSO : ScriptableObject
     public List<MonsterDataSO> possibleMonsters;
 
     [Header("ボス出現設定")]
-    public List<BossSpawnData> possibleBosses;
+    public List<MonsterDataSO> possibleBosses;
 
     [Header("アイテムドロップ設定")]
     public List<ItemData> possibleItemDrops;
