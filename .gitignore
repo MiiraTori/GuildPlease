@@ -72,3 +72,21 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+# フォントのアセットファイル（大きくなりがち）
+Assets/**/Fonts/*.asset
+Assets/**/Fonts/*.fontsettings
+
+# フォントの元ファイル（TrueType, OpenType）
+*.ttf
+*.otf
+*.woff
+*.woff2
+
+# フォントに関する.metaファイル（あれば）
+*.ttf.meta
+*.otf.meta
+*.woff.meta
+*.woff2.meta
+
+# その他、Assets 内で .asset の巨大ファイルがある場合
+Assets/**/Fonts/**/*.asset
