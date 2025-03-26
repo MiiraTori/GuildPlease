@@ -9,7 +9,7 @@ public class MonsterListComponent : MonoBehaviour
 
     [SerializeField]
     public List<MonsterDataSO> monsterSOList = new List<MonsterDataSO>();
-
+ 
     private void Awake()
     {
         monsterMap = new Dictionary<string, MonsterData>();

@@ -10,18 +10,21 @@ public class AdventurerAIComponent : MonoBehaviour
 
     [SerializeField] private AdventurerDataSO adventurerDataSO;
     [SerializeField] private FieldAreaListComponent areaList;
-    [SerializeField] private MonsterSpawnerSystem monsterSpawner;
     [SerializeField] private ItemListComponent itemList;
 
     [SerializeField] private int combatDuration = 2;
     [SerializeField] private int staminaCostPerCombat = 10;
-
+    private MonsterSpawnerSystem monsterSpawner;
     private void Awake()
     {
-        state = new AdventurerState(adventurerDataSO.CreateAdventurerInstance());
-        timer = GetComponent<TaskTimerComponent>();
+         timer = GetComponent<TaskTimerComponent>();
         inventory = GetComponent<InventoryComponent>();
+
+       // state = new(adventurerDataSO.CreateAdventurerInstance());
+
+
     }
+
 
     private void Update()
     {
@@ -111,7 +114,7 @@ public class AdventurerAIComponent : MonoBehaviour
 
         timer.StartTimer(combatDuration, () =>
         {
-            var monster = monsterSpawner.GetRandomMonsterInArea(state.currentAreaId);
+            var monster = monsterSpawner.GetMonster(state.currentAreaId);
 
             if (monster == null)
             {
@@ -121,7 +124,7 @@ public class AdventurerAIComponent : MonoBehaviour
                 return;
             }
 
-            Debug.Log($"🛡️ 「{monster.displayName}」と戦闘中…");
+            Debug.Log($"🛡️ 「{monster.monster.displayName}」と戦闘中…");
             state.data.currentStamina -= staminaCostPerCombat;
             /*
             if (monsterSpawner..DefeatMonster(area.areaId, monster.displayName))

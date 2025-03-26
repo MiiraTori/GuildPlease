@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class SpawnedMonster
 {
-    public string monsterId; // 対応する MonsterDataSO の ID
-    public string fieldAreaId; // 出現しているフィールドエリア
-    public int currentHP;
+    public MonsterData monster; // 対応する MonsterDataSO の ID
+    public FieldAreaDataSO fieldArea; // 出現しているフィールドエリア
     public bool isBoss;
-    public float elapsedTime; // 出現からの経過時間（必要なら）
 }
