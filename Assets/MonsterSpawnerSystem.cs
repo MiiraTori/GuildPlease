@@ -7,18 +7,20 @@ using UnityEngine;
 /// </summary>
 public class MonsterSpawnerSystem : MonoBehaviour
 {
-    public TimeManager timeManager;
+   // public TimeManager timeManager;
     public FieldAreaListComponent fieldAreaList;
     public MonsterListComponent monsterList;
 
     // ゲーム内で出現しているモンスター
-    public List<SpawnedMonster> spawnedMonster;
+    public List<SpawnedMonster> spawnedMonster=new List<SpawnedMonster>();
     
 
     private void Start()
     {
         // TimeManager の初期化が確実に終わった後に登録
         TrySubscribeToTimeManager();
+        fieldAreaList = GameObject.FindObjectOfType<FieldAreaListComponent>();
+        monsterList = GameObject.FindObjectOfType<MonsterListComponent>();
     }
 
     private void OnEnable()
@@ -28,9 +30,9 @@ public class MonsterSpawnerSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        if (timeManager != null )
+        if (TimeManager.Instance != null )
         {
-            timeManager.OnHourChanged -= HandleHourChange;
+            TimeManager.Instance.OnHourChanged -= HandleHourChange;
         
         }
     }
@@ -44,10 +46,10 @@ public class MonsterSpawnerSystem : MonoBehaviour
     
     private void TrySubscribeToTimeManager()
     {
-        if (timeManager != null)
+        if (TimeManager.Instance != null)
         {
-            timeManager.OnHourChanged -= HandleHourChange;
-            timeManager.OnHourChanged += HandleHourChange;
+            TimeManager.Instance.OnHourChanged -= HandleHourChange;
+            TimeManager.Instance.OnHourChanged += HandleHourChange;
         }
     }
 

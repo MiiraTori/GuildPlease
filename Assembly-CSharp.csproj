@@ -67,15 +67,19 @@
     <Compile Include="Assets/Animations/AdventurerListComponent.cs" />
     <Compile Include="Assets/Scripts/Misc/QuestCardU.cs" />
     <Compile Include="Assets/Scripts/Misc/BattleTestRunner.cs" />
+    <Compile Include="Assets/QuestListComponent.cs" />
     <Compile Include="Assets/FolderGenerator.cs" />
     <Compile Include="Assets/Scripts/Components/ItemListComponent.cs" />
+    <Compile Include="Assets/PartyManager.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
+    <Compile Include="Assets/PartyAI.cs" />
     <Compile Include="Assets/Scripts/Data/AdventurerData.cs" />
     <Compile Include="Assets/Scripts/Misc/FieldAreaState.cs" />
     <Compile Include="Assets/Scripts/Misc/QuestDragHandler.cs" />
     <Compile Include="Assets/Scripts/Data/MonsterDataSO.cs" />
     <Compile Include="Assets/Scripts/Core/TimeManager.cs" />
     <Compile Include="Assets/Scripts/Components/TaskTimerComponent.cs" />
+    <Compile Include="Assets/PartyData.cs" />
     <Compile Include="Assets/Scripts/Data/QuestData.cs" />
     <Compile Include="Assets/Scripts/Data/AdventurerDataSO.cs" />
     <Compile Include="Assets/Scripts/Data/QuestDataSO.cs" />
@@ -85,7 +89,6 @@
     <Compile Include="Assets/MonsterSpawnData.cs" />
     <Compile Include="Assets/Scripts/Components/CharacterStats.cs" />
     <Compile Include="Assets/Scripts/Misc/AdventurerDropHandler.cs" />
-    <Compile Include="Assets/SpawnedMonsterComponent.cs" />
     <Compile Include="Assets/Scripts/Misc/GameTime.cs" />
     <Compile Include="Assets/Scripts/Misc/MessageWindow.cs" />
     <Compile Include="Assets/SpawnedMonster.cs" />
