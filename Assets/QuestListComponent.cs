@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using GameData;
 using UnityEngine;
 
 /// <summary>
 /// クエスト一覧を管理するコンポーネント（IDで取得可能）
-— </ summary >
+/// </ summary >
 public class QuestListComponent : MonoBehaviour
 {
     private Dictionary<string, QuestData> questMap = new Dictionary<string, QuestData>();
@@ -120,8 +119,10 @@ public class QuestListComponent : MonoBehaviour
     {
         foreach (var item in quest.rewardItems)
         {
-            Debug.Log($"🎁 {item.itemName} x{item.quantity} を獲得！");
-            InventoryManager.Instance.AddItem(item);
+            Debug.Log($"🎁 {item.itemName} x{item.itemName} を獲得！");
+
+            // 修正必須
+           // InventoryComponent.AddItem(item);
         }
     }
 

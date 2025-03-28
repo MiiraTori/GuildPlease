@@ -16,7 +16,7 @@ public class FieldAreaDataSO : ScriptableObject
     public List<MonsterDataSO> possibleBosses;
 
     [Header("アイテムドロップ設定")]
-    public List<ItemData> possibleItemDrops;
+    public List<ItemDataSO> possibleItemDrops;
 
 
     // 将来的な拡張用（例えばBOSS）

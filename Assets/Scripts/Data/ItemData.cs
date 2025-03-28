@@ -1,5 +1,4 @@
 using UnityEngine;
-using GameData;
 
 [System.Serializable]
 public class ItemData

@@ -16,7 +16,8 @@ MonoBehaviour:
   areaName: "\u306F\u3058\u3081\u306E\u68EE"
   maxMonsterCount: 5
   possibleMonsters:
-  - {fileID: 11400000, guid: 8c2e7f96c220f4e6bb2a812379a6ff1d, type: 2}
+  - {fileID: 11400000, guid: 9b096d1120f454dedae4d7b3520f9f26, type: 2}
   possibleBosses:
-  - monsterData: {fileID: 11400000, guid: 8c2e7f96c220f4e6bb2a812379a6ff1d, type: 2}
-    spawnChance: 1
+  - {fileID: 11400000, guid: 9b096d1120f454dedae4d7b3520f9f26, type: 2}
+  possibleItemDrops:
+  - {fileID: 11400000, guid: 11f017b29bb9643a7b4e17c37079b0bc, type: 2}

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using GameData;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/QuestData", fileName = "NewQuestData")]
